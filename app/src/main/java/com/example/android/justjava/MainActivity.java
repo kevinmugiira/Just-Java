@@ -33,23 +33,26 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitOrder(View view) {
         CheckBox cb = (CheckBox) findViewById(R.id.whipped_cream_checkBox);
+        CheckBox checkB = (CheckBox) findViewById(R.id.chocolate_checkBox);
         boolean hasWhippedCream = cb.isChecked();
+        boolean hasChocolate = checkB.isChecked();
         int howMuch = qunatity * 150 ;
         //String priceMessage = "Amount:ksh " + price;
         //priceMessage = "Name: Lyla Ali\nAdded Whipped cream: "+ hasWhippedCream +"\nQuantity:"+ qunatity + "\n"+ priceMessage;
         //priceMessage = priceMessage + "\nThankYou, Come again!";
-        displayMessage(createOrderSummary(howMuch,hasWhippedCream));
+        displayMessage(createOrderSummary(howMuch,hasWhippedCream,hasChocolate));
 
         //can also use the commented lines above or this
 
     }
 
-    private String createOrderSummary(int price,boolean addWhippedCream){
-        CheckBox check = (CheckBox) findViewById(R.id.whipped_cream_checkBox);
+    private String createOrderSummary(int price,boolean addWhippedCream,boolean addChocolate){
+        //CheckBox check = (CheckBox) findViewById(R.id.whipped_cream_checkBox);
         //boolean gotWhippedCream = check.isChecked();
         //int howMuch = qunatity * 150;
         String priceMessage = "Name: Lyla Ali";
          priceMessage += "\nAdded Whipped cream: " + addWhippedCream;
+         priceMessage += "\nAddedChocolate: " + addChocolate;
          priceMessage += "\nQuantity: " + qunatity;
          priceMessage = priceMessage + "\nAmount: " + price;
          priceMessage = priceMessage + "\ncome again!";
