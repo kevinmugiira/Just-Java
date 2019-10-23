@@ -114,7 +114,7 @@
 
         </LinearLayout>
 
-        <TextView
+    <!--    <TextView
             android:id="@+id/priceTV"
             android:layout_width="72dp"
             android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:layout_marginTop="16dp"
-            android:text="@string/ksh" />
+            android:text="@string/ksh" /> -->
 
         <Button
             android:id="@+id/orderbtn"

@@ -1,6 +1,8 @@
 package com.example.android.justjava;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -39,9 +41,9 @@ public class MainActivity extends AppCompatActivity {
         int howMuch = qunatity * 150 ;
 
         //handles the edit text
-        EditText  edtext = (EditText) findViewById(R.id.name_editText);
+        EditText edtext = (EditText) findViewById(R.id.name_editText);
         String jina = edtext.getText().toString();
-        
+
         //handles the whipped cream checkbox
         CheckBox cb = (CheckBox) findViewById(R.id.whipped_cream_checkBox);
         boolean hasWhippedCream = cb.isChecked();
@@ -56,15 +58,34 @@ public class MainActivity extends AppCompatActivity {
             howMuch = howMuch + 50;
         }
 
-
+        Intent inte = new Intent(Intent.ACTION_SENDTO);
+        inte.setData(Uri.parse("mailto:"));
+        inte.putExtra(Intent.EXTRA_SUBJECT, "Just Java order for " + jina);
+        inte.putExtra(Intent.EXTRA_TEXT, createOrderSummary(howMuch,hasWhippedCream,hasChocolate,jina));
+        if (inte.resolveActivity(getPackageManager()) != null) {
+            startActivity(inte);
+        }
         //String priceMessage = "Amount:ksh " + price;
         //priceMessage = "Name: Lyla Ali\nAdded Whipped cream: "+ hasWhippedCream +"\nQuantity:"+ qunatity + "\n"+ priceMessage;
         //priceMessage = priceMessage + "\nThankYou, Come again!";
-        displayMessage(createOrderSummary(howMuch,hasWhippedCream,hasChocolate,jina));
+        //displayMessage(createOrderSummary(howMuch,hasWhippedCream,hasChocolate,jina));
 
         //can also use the commented lines above or this
 
     }
+
+
+//    public void nextpage(View view){
+//        Button btn = (Button) findViewById(R.id.next_btn);
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent in = new Intent(getApplicationContext(),SecondActivity.class);
+//                startActivity(in);
+//            }
+//        });
+//    }
+//
 
     private String createOrderSummary(int price,boolean addWhippedCream,boolean addChocolate,String name){
         //CheckBox check = (CheckBox) findViewById(R.id.whipped_cream_checkBox);
@@ -186,10 +207,10 @@ public class MainActivity extends AppCompatActivity {
     //}
 
 
-    private void displayMessage(String message){
-        TextView priceTextV = (TextView) findViewById(R.id.price_text_view);
-        priceTextV.setText(message);
-    }
+//    private void displayMessage(String message){
+//        TextView priceTextV = (TextView) findViewById(R.id.price_text_view);
+//        priceTextV.setText(message);
+//    }
 
 
 
